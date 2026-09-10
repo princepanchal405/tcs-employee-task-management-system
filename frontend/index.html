@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Employee and Task Management System"
+    >
+
+    <title>Employee &amp; Task Management System</title>
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Bootstrap Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    >
+
+    <!-- Google Font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Application CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+
+<body class="login-page">
+
+    <main class="login-wrapper">
+
+        <div class="login-container">
+
+            <!-- =========================================
+                 BRAND PANEL
+            ========================================== -->
+            <section class="brand-panel">
+
+                <div class="brand-content">
+
+                    <div class="brand-logo">
+                        <i class="bi bi-buildings"></i>
+                    </div>
+
+                    <span class="brand-overline">
+                        ENTERPRISE WORKSPACE
+                    </span>
+
+                    <h1>
+                        Employee &amp;<br>
+                        Task Management
+                    </h1>
+
+                    <p class="brand-description">
+                        A secure and centralized workspace for managing
+                        employees, tasks, leaves and organizational insights.
+                    </p>
+
+                    <div class="feature-list">
+
+                        <div class="feature-item">
+                            <span class="feature-icon">
+                                <i class="bi bi-people"></i>
+                            </span>
+
+                            <div>
+                                <strong>Employee Management</strong>
+                                <small>
+                                    Manage employee information and profiles
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="feature-item">
+                            <span class="feature-icon">
+                                <i class="bi bi-check2-square"></i>
+                            </span>
+
+                            <div>
+                                <strong>Task Management</strong>
+                                <small>
+                                    Assign, monitor and track work progress
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="feature-item">
+                            <span class="feature-icon">
+                                <i class="bi bi-calendar2-check"></i>
+                            </span>
+
+                            <div>
+                                <strong>Leave Management</strong>
+                                <small>
+                                    Simplify employee leave workflows
+                                </small>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="brand-footer">
+                    <span>
+                        <i class="bi bi-shield-check"></i>
+                        Secure Workspace
+                    </span>
+
+                    <span>
+                        <i class="bi bi-phone"></i>
+                        Responsive
+                    </span>
+
+                    <span>
+                        <i class="bi bi-bar-chart"></i>
+                        Insights
+                    </span>
+                </div>
+
+            </section>
+
+
+            <!-- =========================================
+                 LOGIN PANEL
+            ========================================== -->
+            <section class="login-panel">
+
+                <div class="login-form-wrapper">
+
+                    <div class="mobile-brand">
+                        <div class="mobile-brand-icon">
+                            <i class="bi bi-buildings"></i>
+                        </div>
+
+                        <span>EMPLOYEE MANAGEMENT</span>
+                    </div>
+
+                    <div class="login-heading">
+
+                        <span class="welcome-label">
+                            WELCOME BACK
+                        </span>
+
+                        <h2>
+                            Sign in to your workspace
+                        </h2>
+
+                        <p>
+                            Enter your credentials to access the management portal.
+                        </p>
+
+                    </div>
+
+
+                    <!-- Alert -->
+                    <div
+                        id="loginAlert"
+                        class="alert alert-danger login-alert d-none"
+                        role="alert"
+                    >
+                        <i class="bi bi-exclamation-circle me-2"></i>
+                        <span id="loginAlertMessage">
+                            Unable to sign in.
+                        </span>
+                    </div>
+
+
+                    <!-- Login Form -->
+                    <form id="loginForm" novalidate>
+
+                        <!-- Email -->
+                        <div class="form-group">
+
+                            <label for="email">
+                                Email address
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <span class="input-icon">
+                                    <i class="bi bi-envelope"></i>
+                                </span>
+
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    class="form-control custom-input"
+                                    placeholder="name@company.com"
+                                    autocomplete="email"
+                                    required
+                                >
+
+                            </div>
+
+                            <div
+                                id="emailError"
+                                class="field-error"
+                            ></div>
+
+                        </div>
+
+
+                        <!-- Password -->
+                        <div class="form-group">
+
+                            <label for="password">
+                                Password
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <span class="input-icon">
+                                    <i class="bi bi-lock"></i>
+                                </span>
+
+                                <input
+                                    type="password"
+                                    id="password"
+                                    name="password"
+                                    class="form-control custom-input password-input"
+                                    placeholder="Enter your password"
+                                    autocomplete="current-password"
+                                    required
+                                >
+
+                                <button
+                                    type="button"
+                                    id="togglePassword"
+                                    class="password-toggle"
+                                    aria-label="Show password"
+                                >
+                                    <i class="bi bi-eye"></i>
+                                </button>
+
+                            </div>
+
+                            <div
+                                id="passwordError"
+                                class="field-error"
+                            ></div>
+
+                        </div>
+
+
+                        <!-- Options -->
+                        <div class="login-options">
+
+                            <label class="remember-option">
+
+                                <input
+                                    type="checkbox"
+                                    id="rememberMe"
+                                >
+
+                                <span class="custom-checkbox">
+                                    <i class="bi bi-check"></i>
+                                </span>
+
+                                <span>
+                                    Remember me
+                                </span>
+
+                            </label>
+
+                            <button
+                                type="button"
+                                id="forgotPassword"
+                                class="forgot-link"
+                            >
+                                Forgot password?
+                            </button>
+
+                        </div>
+
+
+                        <!-- Sign In -->
+                        <button
+                            type="submit"
+                            id="loginButton"
+                            class="btn login-button"
+                        >
+
+                            <span id="loginButtonText">
+                                Sign in
+                            </span>
+
+                            <span
+                                id="loginSpinner"
+                                class="spinner-border spinner-border-sm d-none"
+                                role="status"
+                                aria-hidden="true"
+                            ></span>
+
+                            <i
+                                id="loginArrow"
+                                class="bi bi-arrow-right"
+                            ></i>
+
+                        </button>
+
+                    </form>
+
+                    <div class="login-create-account">
+                        <span>New employee?</span>
+                        <a href="employee-register.html">Create new account</a>
+                    </div>
+
+                    <!-- Security -->
+                    <div class="security-note">
+
+                        <i class="bi bi-shield-lock"></i>
+
+                        <span>
+                            Your session is protected with secure authentication.
+                        </span>
+
+                    </div>
+
+
+                    <!-- Footer -->
+                    <footer class="login-footer">
+
+                        <div>
+                            Employee &amp; Task Management System
+                        </div>
+
+                        <span>
+                            © 2026 • Secure • Responsive • Professional
+                        </span>
+
+                    </footer>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- JavaScript -->
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/api.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/common.js"></script>
+
+</body>
+</html>

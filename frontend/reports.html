@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Reports and analytics workspace">
+    <title>Reports &amp; Analytics | Employee &amp; Task Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/reports-fixes.css">
+</head>
+<body class="dashboard-page reports-page">
+<div class="app-shell">
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <aside class="app-sidebar" id="appSidebar">
+        <div class="sidebar-header">
+            <a href="dashboard.html" class="sidebar-brand">
+                <div class="sidebar-brand-icon"><i class="bi bi-buildings"></i></div>
+                <div class="sidebar-brand-text"><strong>Employee &amp; Task</strong><span>Management System</span></div>
+            </a>
+            <button type="button" class="sidebar-close" id="sidebarClose" aria-label="Close navigation"><i class="bi bi-x-lg"></i></button>
+        </div>
+        <div class="sidebar-body">
+            <div class="sidebar-section-title">MAIN MENU</div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="sidebar-link"><span class="sidebar-link-icon"><i class="bi bi-grid-1x2"></i></span><span>Dashboard</span></a>
+                <a href="employees.html" class="sidebar-link" data-role="ADMIN"><span class="sidebar-link-icon"><i class="bi bi-people"></i></span><span>Employees</span></a>
+                <a href="tasks.html" class="sidebar-link" data-role="ADMIN,EMPLOYEE"><span class="sidebar-link-icon"><i class="bi bi-check2-square"></i></span><span id="reportsTaskLabel">Tasks</span></a>
+                <a href="leaves.html" class="sidebar-link" data-role="ADMIN,EMPLOYEE"><span class="sidebar-link-icon"><i class="bi bi-calendar2-check"></i></span><span id="reportsLeaveLabel">Leaves</span></a>
+                <a href="reports.html" class="sidebar-link active" data-role="ADMIN"><span class="sidebar-link-icon"><i class="bi bi-bar-chart"></i></span><span>Reports &amp; Analytics</span></a>
+            </nav>
+        </div>
+        <div class="sidebar-footer">
+            <div class="sidebar-help-card"><div class="help-icon"><i class="bi bi-headset"></i></div><div><strong>Need help?</strong><span>Contact workspace support</span></div></div>
+            <button type="button" class="sidebar-logout" id="logoutButton"><i class="bi bi-box-arrow-left"></i><span>Sign out</span></button>
+        </div>
+    </aside>
+
+    <div class="app-main">
+        <header class="app-topbar">
+            <div class="topbar-left">
+                <button type="button" class="mobile-menu-button" id="sidebarOpen" aria-label="Open navigation"><i class="bi bi-list"></i></button>
+                <div class="topbar-heading"><span>Management</span><h1>Reports &amp; Analytics</h1></div>
+            </div>
+            <div class="topbar-right">
+                <button type="button" class="topbar-icon-button" id="reportSearchButton" aria-label="Search"><i class="bi bi-search"></i></button>
+                <button type="button" class="topbar-icon-button notification-button" aria-label="Notifications"><i class="bi bi-bell"></i><span class="notification-dot"></span></button>
+                <div class="topbar-divider"></div>
+                <div class="dashboard-user-menu-wrap">
+                    <button type="button" class="topbar-user" id="reportsUserButton" aria-expanded="false">
+                        <div class="user-avatar" id="reportsUserAvatar">A</div>
+                        <div class="user-info"><strong id="reportsUserName">User</strong><span id="reportsUserRole">Administrator</span></div>
+                        <i class="bi bi-chevron-down user-chevron"></i>
+                    </button>
+                    <div class="dashboard-user-menu" id="reportsUserMenu" aria-hidden="true">
+                        <div class="dashboard-user-menu-head"><strong id="reportsMenuUserName">User</strong><span id="reportsMenuUserEmail">user@example.com</span></div>
+                        <a href="#" id="reportsMenuLogout" class="danger"><i class="bi bi-box-arrow-left"></i><span>Sign out</span></a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="dashboard-content reports-content">
+            <section class="task-welcome">
+                <div>
+                    <span class="welcome-date" id="reportsWelcomeDate"></span>
+                    <h2>Reports &amp; Analytics</h2>
+                    <p>Review workforce, task and leave performance in one place.</p>
+                </div>
+                <div class="dashboard-actions reports-actions">
+                    <button type="button" class="secondary-action" id="refreshReports"><i class="bi bi-arrow-clockwise"></i><span>Refresh</span></button>
+                    <div class="report-export-menu">
+                        <button type="button" class="primary-action" id="exportReportButton"><i class="bi bi-download"></i><span>Export CSV</span><i class="bi bi-chevron-down"></i></button>
+                        <div class="report-export-dropdown d-none" id="exportReportDropdown">
+                            <button type="button" data-export="employees"><i class="bi bi-people"></i> Employees</button>
+                            <button type="button" data-export="tasks"><i class="bi bi-check2-square"></i> Tasks</button>
+                            <button type="button" data-export="leaves"><i class="bi bi-calendar2-check"></i> Leaves</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="task-alert d-none" id="reportsAlert" role="alert">
+                <i id="reportsAlertIcon" class="bi bi-check-circle"></i>
+                <span id="reportsAlertMessage"></span>
+                <button type="button" id="reportsAlertClose" aria-label="Close"><i class="bi bi-x"></i></button>
+            </div>
+
+            <section class="reports-kpi-grid">
+                <article class="dashboard-card report-kpi-card"><div class="report-kpi-icon blue"><i class="bi bi-people"></i></div><span>Employees</span><strong id="reportTotalEmployees">—</strong><small id="reportEmployeeMeta">—</small></article>
+                <article class="dashboard-card report-kpi-card"><div class="report-kpi-icon purple"><i class="bi bi-check2-square"></i></div><span>Total Tasks</span><strong id="reportTotalTasks">—</strong><small id="reportTaskMeta">—</small></article>
+                <article class="dashboard-card report-kpi-card"><div class="report-kpi-icon green"><i class="bi bi-calendar2-check"></i></div><span>Leave Requests</span><strong id="reportTotalLeaves">—</strong><small id="reportLeaveMeta">—</small></article>
+                <article class="dashboard-card report-kpi-card"><div class="report-kpi-icon orange"><i class="bi bi-exclamation-circle"></i></div><span>Overdue Tasks</span><strong id="reportOverdueTasks">—</strong><small>Open tasks past due date</small></article>
+            </section>
+
+            <section class="reports-grid">
+                <article class="dashboard-card report-panel">
+                    <div class="dashboard-card-header"><div><span class="card-eyebrow">WORKFORCE</span><h3>Employees by Department</h3></div></div>
+                    <div class="report-chart-wrap"><canvas id="departmentChart"></canvas></div>
+                </article>
+                <article class="dashboard-card report-panel">
+                    <div class="dashboard-card-header"><div><span class="card-eyebrow">WORKFLOW</span><h3>Task Status</h3></div></div>
+                    <div class="report-chart-wrap"><canvas id="taskStatusChart"></canvas></div>
+                </article>
+            </section>
+
+            <section class="reports-grid">
+                <article class="dashboard-card report-panel">
+                    <div class="dashboard-card-header"><div><span class="card-eyebrow">LEAVE</span><h3>Leave Status</h3></div></div>
+                    <div class="report-chart-wrap"><canvas id="leaveStatusChart"></canvas></div>
+                </article>
+                <article class="dashboard-card report-panel report-summary-panel">
+                    <div class="dashboard-card-header"><div><span class="card-eyebrow">AT A GLANCE</span><h3>Workflow Summary</h3></div></div>
+                    <div class="report-summary-list">
+                        <div><span>Active employees</span><strong id="summaryActiveEmployees">—</strong></div>
+                        <div><span>In progress tasks</span><strong id="summaryInProgressTasks">—</strong></div>
+                        <div><span>Completed tasks</span><strong id="summaryCompletedTasks">—</strong></div>
+                        <div><span>Approved leaves</span><strong id="summaryApprovedLeaves">—</strong></div>
+                        <div><span>Rejected leaves</span><strong id="summaryRejectedLeaves">—</strong></div>
+                    </div>
+                </article>
+            </section>
+
+            <section class="dashboard-card report-table-card">
+                <div class="dashboard-card-header"><div><span class="card-eyebrow">EMPLOYEE PERFORMANCE</span><h3>Employee-wise Task Summary</h3></div><span class="task-count-badge" id="employeeSummaryCount">0 records</span></div>
+                <div class="report-table-wrapper">
+                    <div class="table-responsive">
+                        <table class="table task-table align-middle">
+                            <thead><tr><th>Employee</th><th>Department</th><th>Total</th><th>Pending</th><th>In Progress</th><th>Completed</th></tr></thead>
+                            <tbody id="employeeSummaryBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div id="employeeSummaryEmpty" class="task-state task-empty d-none"><div class="task-empty-icon"><i class="bi bi-bar-chart"></i></div><h4>No employee task data</h4><p>Employee task summaries will appear after tasks are assigned.</p></div>
+            </section>
+
+            <footer class="dashboard-footer"><span>Employee &amp; Task Management System</span><span>Secure • Responsive • Professional</span></footer>
+        </main>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/utils.js"></script>
+<script src="assets/js/api.js"></script>
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/common.js"></script>
+<script src="assets/js/reports.js"></script>
+</body>
+</html>

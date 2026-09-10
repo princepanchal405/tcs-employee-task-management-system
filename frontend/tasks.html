@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Task Management workspace">
+    <title id="taskPageTitle">Tasks | Employee &amp; Task Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body class="dashboard-page task-page">
+<div class="app-shell">
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <aside class="app-sidebar" id="appSidebar">
+        <div class="sidebar-header">
+            <a href="dashboard.html" class="sidebar-brand">
+                <div class="sidebar-brand-icon"><i class="bi bi-buildings"></i></div>
+                <div class="sidebar-brand-text"><strong>Employee &amp; Task</strong><span>Management System</span></div>
+            </a>
+            <button type="button" class="sidebar-close" id="sidebarClose" aria-label="Close navigation"><i class="bi bi-x-lg"></i></button>
+        </div>
+        <div class="sidebar-body">
+            <div class="sidebar-section-title">MAIN MENU</div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="sidebar-link"><span class="sidebar-link-icon"><i class="bi bi-grid-1x2"></i></span><span>Dashboard</span></a>
+                <a href="employees.html" class="sidebar-link" data-role="ADMIN"><span class="sidebar-link-icon"><i class="bi bi-people"></i></span><span>Employees</span></a>
+                <a href="tasks.html" class="sidebar-link active" data-role="ADMIN,EMPLOYEE"><span class="sidebar-link-icon"><i class="bi bi-check2-square"></i></span><span id="taskSidebarLabel">Tasks</span></a>
+                <a href="leaves.html" class="sidebar-link" data-role="ADMIN,EMPLOYEE"><span class="sidebar-link-icon"><i class="bi bi-calendar2-check"></i></span><span id="taskLeaveLabel">Leaves</span></a>
+                <a href="reports.html" class="sidebar-link" data-role="ADMIN"><span class="sidebar-link-icon"><i class="bi bi-bar-chart"></i></span><span>Reports &amp; Analytics</span></a>
+            </nav>
+        </div>
+        <div class="sidebar-footer">
+            <div class="sidebar-help-card"><div class="help-icon"><i class="bi bi-headset"></i></div><div><strong>Need help?</strong><span>Contact workspace support</span></div></div>
+            <button type="button" class="sidebar-logout" id="logoutButton"><i class="bi bi-box-arrow-left"></i><span>Sign out</span></button>
+        </div>
+    </aside>
+
+    <div class="app-main">
+        <header class="app-topbar">
+            <div class="topbar-left">
+                <button type="button" class="mobile-menu-button" id="sidebarOpen" aria-label="Open navigation"><i class="bi bi-list"></i></button>
+                <div class="topbar-heading"><span id="taskSectionLabel">Management</span><h1 id="taskTopbarHeading">Tasks</h1></div>
+            </div>
+            <div class="topbar-right">
+                <button type="button" class="topbar-icon-button" aria-label="Search"><i class="bi bi-search"></i></button>
+                <button type="button" class="topbar-icon-button notification-button" aria-label="Notifications"><i class="bi bi-bell"></i><span class="notification-dot"></span></button>
+                <div class="topbar-divider"></div>
+                <div class="dashboard-user-menu-wrap">
+                    <button type="button" class="topbar-user" id="taskUserButton" aria-expanded="false">
+                        <div class="user-avatar" id="taskUserAvatar">U</div>
+                        <div class="user-info"><strong id="taskUserName">User</strong><span id="taskUserRole">Employee</span></div>
+                        <i class="bi bi-chevron-down user-chevron"></i>
+                    </button>
+                    <div class="dashboard-user-menu" id="taskUserMenu" aria-hidden="true">
+                        <div class="dashboard-user-menu-head"><strong id="taskMenuUserName">User</strong><span id="taskMenuUserEmail">user@example.com</span></div>
+                        <a href="#" id="taskMenuLogout" class="danger"><i class="bi bi-box-arrow-left"></i><span>Sign out</span></a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="task-content dashboard-content">
+            <section class="task-welcome">
+                <div>
+                    <span class="welcome-date" id="taskWelcomeDate"></span>
+                    <h2 id="taskHeading">Task Management</h2>
+                    <p id="taskPageDescription">Create, assign and monitor employee tasks.</p>
+                </div>
+                <div class="dashboard-actions">
+                    <button type="button" class="primary-action" id="addTaskButton" data-role="ADMIN"><i class="bi bi-plus-lg"></i><span>Create Task</span></button>
+                </div>
+            </section>
+
+            <div class="task-alert d-none" id="taskAlert" role="alert">
+                <i id="taskAlertIcon" class="bi bi-check-circle"></i>
+                <span id="taskAlertMessage"></span>
+                <button type="button" id="taskAlertClose" aria-label="Close"><i class="bi bi-x"></i></button>
+            </div>
+
+            <section class="task-filters dashboard-card">
+                <div class="task-filter-grid">
+                    <div class="task-filter-group task-search-group">
+                        <label for="taskSearch">Search</label>
+                        <div class="task-input-icon-wrap"><i class="bi bi-search"></i><input id="taskSearch" class="form-control" type="search" placeholder="Search tasks, descriptions or employees"></div>
+                    </div>
+                    <div class="task-filter-group" id="taskEmployeeFilterWrap">
+                        <label for="taskEmployeeFilter">Employee</label>
+                        <select id="taskEmployeeFilter" class="form-select"><option value="">All Employees</option></select>
+                    </div>
+                    <div class="task-filter-group">
+                        <label for="taskPriorityFilter">Priority</label>
+                        <select id="taskPriorityFilter" class="form-select"><option value="">All Priorities</option><option value="LOW">Low</option><option value="MEDIUM">Medium</option><option value="HIGH">High</option></select>
+                    </div>
+                    <div class="task-filter-group">
+                        <label for="taskStatusFilter">Status</label>
+                        <select id="taskStatusFilter" class="form-select"><option value="">All Statuses</option><option value="PENDING">Pending</option><option value="IN_PROGRESS">In Progress</option><option value="COMPLETED">Completed</option></select>
+                    </div>
+                    <div class="task-filter-group">
+                        <label for="taskOrdering">Sort</label>
+                        <select id="taskOrdering" class="form-select"><option value="-created_at">Newest</option><option value="created_at">Oldest</option><option value="due_date">Due Date</option><option value="-due_date">Latest Due Date</option><option value="title">Title A–Z</option><option value="-title">Title Z–A</option><option value="priority">Priority</option><option value="status">Status</option></select>
+                    </div>
+                    <div class="task-filter-actions"><button type="button" class="secondary-action" id="resetTaskFilters"><i class="bi bi-arrow-counterclockwise"></i><span>Reset</span></button></div>
+                </div>
+            </section>
+
+            <section class="dashboard-card task-table-card">
+                <div class="dashboard-card-header task-table-header">
+                    <div><span class="card-eyebrow">WORKFLOW</span><h3 id="taskTableHeading">Task Records</h3></div>
+                    <span class="task-count-badge"><span id="taskCount">0</span> records</span>
+                </div>
+
+                <div id="taskLoading" class="task-state task-loading">
+                    <div class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></div>
+                    <span>Loading tasks...</span>
+                </div>
+
+                <div id="taskEmpty" class="task-state task-empty d-none">
+                    <div class="task-empty-icon"><i id="taskEmptyIcon" class="bi bi-check2-square"></i></div>
+                    <h4 id="taskEmptyHeading">No tasks found</h4>
+                    <p id="taskEmptyDescription">There are no task records matching your current filters.</p>
+                    <button type="button" class="primary-action" id="emptyCreateTaskButton" data-role="ADMIN"><i class="bi bi-plus-lg"></i><span>Create Task</span></button>
+                </div>
+
+                <div id="taskTableWrapper" class="table-responsive d-none">
+                    <table class="table task-table align-middle">
+                        <thead><tr><th>Task</th><th>Assigned To</th><th>Priority</th><th>Due Date</th><th>Status</th><th>Created By</th><th>Actions</th></tr></thead>
+                        <tbody id="taskTableBody"></tbody>
+                    </table>
+                </div>
+
+                <div id="taskPagination" class="task-pagination d-none">
+                    <div class="pagination-summary">Showing <strong id="taskPaginationStart">0</strong>–<strong id="taskPaginationEnd">0</strong> of <strong id="taskPaginationTotal">0</strong></div>
+                    <div class="pagination-controls"><button type="button" class="pagination-arrow" id="previousTaskPage" aria-label="Previous page"><i class="bi bi-chevron-left"></i></button><div id="taskPaginationNumbers" class="pagination-numbers"></div><button type="button" class="pagination-arrow" id="nextTaskPage" aria-label="Next page"><i class="bi bi-chevron-right"></i></button></div>
+                </div>
+            </section>
+
+            <footer class="dashboard-footer"><span>Employee &amp; Task Management System</span><span>Secure Workspace</span></footer>
+        </main>
+    </div>
+</div>
+
+<!-- Create / Edit Task -->
+<div class="modal fade" id="taskModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg"><div class="modal-content task-modal-content">
+        <div class="modal-header"><div><span class="card-eyebrow">TASK WORKFLOW</span><h5 class="modal-title" id="taskModalTitle">Create Task</h5><p id="taskModalSubtitle">Create and assign a new task.</p></div><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+        <form id="taskForm" novalidate>
+            <div class="modal-body">
+                <div class="task-form-grid">
+                    <div class="task-form-field full"><label for="taskTitle">Task Title</label><input id="taskTitle" class="form-control" type="text" maxlength="200" placeholder="Enter task title" required></div>
+                    <div class="task-form-field full"><label for="taskDescription">Description</label><textarea id="taskDescription" class="form-control" rows="4" placeholder="Describe the task"></textarea></div>
+                    <div class="task-form-field"><label for="taskAssignedTo">Assign To</label><select id="taskAssignedTo" class="form-select" required><option value="">Select employee</option></select></div>
+                    <div class="task-form-field"><label for="taskPriority">Priority</label><select id="taskPriority" class="form-select" required><option value="MEDIUM">Medium</option><option value="LOW">Low</option><option value="HIGH">High</option></select></div>
+                    <div class="task-form-field"><label for="taskDueDate">Due Date</label><input id="taskDueDate" class="form-control" type="date" required></div>
+                    <div class="task-form-field"><label for="taskStatus">Status</label><select id="taskStatus" class="form-select" required><option value="PENDING">Pending</option><option value="IN_PROGRESS">In Progress</option><option value="COMPLETED">Completed</option></select></div>
+                </div>
+            </div>
+            <div class="modal-footer"><button type="button" class="secondary-action" data-bs-dismiss="modal">Cancel</button><button type="submit" class="primary-action" id="taskSubmitButton"><i id="taskSubmitIcon" class="bi bi-check2"></i><span id="taskSubmitText">Create Task</span><span id="taskSubmitSpinner" class="spinner-border spinner-border-sm d-none" aria-hidden="true"></span></button></div>
+        </form>
+    </div></div>
+</div>
+
+<!-- Task Details -->
+<div class="modal fade" id="taskDetailsModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg"><div class="modal-content task-modal-content">
+        <div class="modal-header"><div><span class="card-eyebrow">TASK DETAILS</span><h5 class="modal-title" id="detailsTaskTitle">Task</h5><p id="detailsTaskId">Task #-</p></div><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+        <div class="modal-body"><div class="task-details-grid">
+            <div class="task-detail-box full"><span>Description</span><strong id="detailsTaskDescription">-</strong></div>
+            <div class="task-detail-box"><span>Assigned Employee</span><strong id="detailsAssignedEmployee">-</strong><small id="detailsAssignedEmployeeId">-</small></div>
+            <div class="task-detail-box"><span>Priority</span><strong id="detailsTaskPriority">-</strong></div>
+            <div class="task-detail-box"><span>Due Date</span><strong id="detailsTaskDueDate">-</strong></div>
+            <div class="task-detail-box"><span>Status</span><strong id="detailsTaskStatus">-</strong></div>
+            <div class="task-detail-box"><span>Created By</span><strong id="detailsTaskCreatedBy">-</strong></div>
+            <div class="task-detail-box"><span>Created At</span><strong id="detailsTaskCreatedAt">-</strong></div>
+        </div></div>
+        <div class="modal-footer"><button type="button" class="secondary-action" data-bs-dismiss="modal">Close</button></div>
+    </div></div>
+</div>
+
+<!-- Delete Task -->
+<div class="modal fade" id="deleteTaskModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered"><div class="modal-content task-modal-content">
+        <div class="modal-header"><div><span class="card-eyebrow">CONFIRMATION</span><h5 class="modal-title">Delete Task</h5></div><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+        <div class="modal-body"><div class="delete-confirmation"><div class="delete-confirmation-icon"><i class="bi bi-trash3"></i></div><p id="deleteTaskMessage">This task will be permanently deleted. This action cannot be undone.</p></div></div>
+        <div class="modal-footer"><button type="button" class="secondary-action" data-bs-dismiss="modal">Cancel</button><button type="button" class="danger-action" id="confirmDeleteTaskButton"><span id="deleteTaskSpinner" class="spinner-border spinner-border-sm d-none"></span><span id="deleteTaskButtonText">Delete Task</span></button></div>
+    </div></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/utils.js"></script>
+<script src="assets/js/api.js"></script>
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/common.js"></script>
+<script src="assets/js/tasks.js"></script>
+</body>
+</html>

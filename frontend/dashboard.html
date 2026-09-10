@@ -1,0 +1,755 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="description"
+      content="Employee & Task Management System Dashboard"
+    />
+
+    <title>Dashboard | Employee &amp; Task Management System</title>
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+
+    <!-- Inter -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Project CSS -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+
+    <link rel="stylesheet" href="assets/css/responsive.css" />
+  </head>
+
+  <body class="dashboard-page">
+    <div class="app-shell">
+      <!-- =====================================================
+         SIDEBAR OVERLAY
+    ====================================================== -->
+
+      <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+      <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+      <aside class="app-sidebar" id="appSidebar">
+        <!-- SIDEBAR HEADER -->
+
+        <div class="sidebar-header">
+          <a href="dashboard.html" class="sidebar-brand">
+            <div class="sidebar-brand-icon">
+              <i class="bi bi-buildings"></i>
+            </div>
+
+            <div class="sidebar-brand-text">
+              <strong> Employee &amp; Task </strong>
+
+              <span> Management System </span>
+            </div>
+          </a>
+
+          <button
+            type="button"
+            class="sidebar-close"
+            id="sidebarClose"
+            aria-label="Close navigation"
+          >
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+
+        <!-- SIDEBAR BODY -->
+
+        <div class="sidebar-body">
+          <div class="sidebar-section-title">MAIN MENU</div>
+
+          <nav class="sidebar-nav">
+            <!-- DASHBOARD -->
+
+            <a href="dashboard.html" class="sidebar-link active">
+              <span class="sidebar-link-icon">
+                <i class="bi bi-grid-1x2"></i>
+              </span>
+
+              <span> Dashboard </span>
+            </a>
+
+            <!-- EMPLOYEES -->
+
+            <a href="employees.html" class="sidebar-link" data-role="ADMIN">
+              <span class="sidebar-link-icon">
+                <i class="bi bi-people"></i>
+              </span>
+
+              <span> Employees </span>
+            </a>
+
+            <!-- TASKS -->
+
+            <a
+              href="tasks.html"
+              class="sidebar-link"
+              data-role="ADMIN,EMPLOYEE"
+            >
+              <span class="sidebar-link-icon">
+                <i class="bi bi-check2-square"></i>
+              </span>
+
+              <span class="sidebar-nav-label-admin"> Tasks </span>
+
+              <span class="sidebar-nav-label-employee"> My Tasks </span>
+            </a>
+
+            <!-- LEAVES -->
+
+            <a
+              href="leaves.html"
+              class="sidebar-link"
+              data-role="ADMIN,EMPLOYEE"
+            >
+              <span class="sidebar-link-icon">
+                <i class="bi bi-calendar2-check"></i>
+              </span>
+
+              <span class="sidebar-nav-label-admin"> Leave Management </span>
+
+              <span class="sidebar-nav-label-employee"> My Leaves </span>
+            </a>
+
+            <!-- REPORTS -->
+
+            <a href="reports.html" class="sidebar-link" data-role="ADMIN">
+              <span class="sidebar-link-icon">
+                <i class="bi bi-bar-chart"></i>
+              </span>
+
+              <span> Reports &amp; Analytics </span>
+            </a>
+          </nav>
+        </div>
+
+        <!-- SIDEBAR FOOTER -->
+
+        <div class="sidebar-footer">
+          <div class="sidebar-help-card">
+            <div class="sidebar-footer">
+              <button type="button" class="sidebar-logout" id="logoutButton">
+                <i class="bi bi-box-arrow-left"></i>
+                <span>Sign out</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- LOGOUT -->
+
+          <button type="button" class="sidebar-logout" id="logoutButton">
+            <i class="bi bi-box-arrow-left"></i>
+
+            <span> Sign out </span>
+          </button>
+        </div>
+      </aside>
+
+      <!-- =====================================================
+         MAIN APPLICATION
+    ====================================================== -->
+
+      <div class="app-main">
+        <!-- =================================================
+             TOPBAR
+        ================================================== -->
+
+        <header class="app-topbar">
+          <div class="topbar-left">
+            <!-- MOBILE MENU -->
+
+            <button
+              type="button"
+              class="mobile-menu-button"
+              id="sidebarOpen"
+              aria-label="Open navigation"
+            >
+              <i class="bi bi-list"></i>
+            </button>
+
+            <div class="topbar-heading">
+              <span id="dashboardSectionLabel"> Workspace </span>
+
+              <h1>Dashboard</h1>
+            </div>
+          </div>
+
+          <div class="topbar-right">
+            <!-- SEARCH -->
+
+            <button
+              type="button"
+              class="topbar-icon-button"
+              aria-label="Search"
+            >
+              <i class="bi bi-search"></i>
+            </button>
+
+            <!-- NOTIFICATIONS -->
+
+            <button
+              type="button"
+              class="topbar-icon-button notification-button"
+              aria-label="Notifications"
+            >
+              <i class="bi bi-bell"></i>
+
+              <span class="notification-dot"></span>
+            </button>
+
+            <div class="topbar-divider"></div>
+
+            <!-- USER MENU -->
+
+            <div class="dashboard-user-menu-wrap">
+              <button
+                type="button"
+                class="topbar-user"
+                id="dashboardUserButton"
+                aria-expanded="false"
+              >
+                <div class="user-avatar" id="userAvatar">U</div>
+
+                <div class="user-info">
+                  <strong id="currentUserName"> User </strong>
+
+                  <span id="currentUserRole"> Employee </span>
+                </div>
+
+                <i class="bi bi-chevron-down user-chevron"></i>
+              </button>
+
+              <!-- USER DROPDOWN -->
+
+              <div
+                class="dashboard-user-menu"
+                id="dashboardUserMenu"
+                aria-hidden="true"
+              >
+                <div class="dashboard-user-menu-head">
+                  <strong id="menuUserName"> User </strong>
+
+                  <span id="menuUserEmail"> user@example.com </span>
+                </div>
+
+                <div class="dashboard-user-menu-divider"></div>
+
+                <!-- ONLY WORKING ACTION -->
+
+                <a href="#" id="dashboardMenuLogout" class="danger">
+                  <i class="bi bi-box-arrow-left"></i>
+
+                  <span> Sign out </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- =================================================
+             DASHBOARD CONTENT
+        ================================================== -->
+
+        <main class="dashboard-content">
+          <!-- =================================================
+                 ADMIN DASHBOARD
+            ================================================== -->
+
+          <section id="adminDashboardView" data-role="ADMIN">
+            <!-- WELCOME -->
+
+            <section class="dashboard-welcome">
+              <div>
+                <span class="welcome-date" id="adminWelcomeDate"></span>
+
+                <h2>
+                  Good morning,
+
+                  <span id="welcomeUserName"> Admin </span>
+
+                  👋
+                </h2>
+
+                <p>
+                  Here's an overview of your workforce and today's activity.
+                </p>
+              </div>
+
+              <div class="dashboard-actions">
+                <button
+                  type="button"
+                  class="secondary-action"
+                  id="dashboardExportReport"
+                >
+                  <i class="bi bi-download"></i>
+
+                  Export Report
+                </button>
+
+                <button
+                  type="button"
+                  class="primary-action"
+                  id="dashboardAddEmployee"
+                >
+                  <i class="bi bi-plus-lg"></i>
+
+                  Add Employee
+                </button>
+              </div>
+            </section>
+
+            <!-- =================================================
+                     ADMIN LIVE SUMMARY
+                ================================================== -->
+
+            <section class="summary-grid">
+              <!-- TOTAL EMPLOYEES -->
+
+              <article class="summary-card">
+                <div class="summary-card-top">
+                  <div class="summary-icon employees-icon">
+                    <i class="bi bi-people"></i>
+                  </div>
+
+                  <span class="summary-trend neutral"> LIVE </span>
+                </div>
+
+                <div class="summary-label">Total Employees</div>
+
+                <div class="summary-value" id="totalEmployees">—</div>
+
+                <div class="summary-description">
+                  Current employee directory
+                </div>
+              </article>
+
+              <!-- ACTIVE EMPLOYEES -->
+
+              <article class="summary-card">
+                <div class="summary-card-top">
+                  <div class="summary-icon active-icon">
+                    <i class="bi bi-person-check"></i>
+                  </div>
+
+                  <span class="summary-trend positive"> LIVE </span>
+                </div>
+
+                <div class="summary-label">Active Employees</div>
+
+                <div class="summary-value" id="activeEmployees">—</div>
+
+                <div
+                  class="summary-description"
+                  id="activeEmployeesDescription"
+                >
+                  Currently active workforce
+                </div>
+              </article>
+
+              <!-- PENDING TASKS -->
+
+              <article class="summary-card">
+                <div class="summary-card-top">
+                  <div class="summary-icon pending-icon">
+                    <i class="bi bi-hourglass-split"></i>
+                  </div>
+
+                  <span class="summary-trend neutral"> LIVE </span>
+                </div>
+
+                <div class="summary-label">Pending Tasks</div>
+
+                <div class="summary-value" id="pendingTasks">—</div>
+
+                <div class="summary-description">
+                  Tasks waiting to be completed
+                </div>
+              </article>
+
+              <!-- COMPLETED TASKS -->
+
+              <article class="summary-card">
+                <div class="summary-card-top">
+                  <div class="summary-icon completed-icon">
+                    <i class="bi bi-check2-circle"></i>
+                  </div>
+
+                  <span class="summary-trend positive"> LIVE </span>
+                </div>
+
+                <div class="summary-label">Completed Tasks</div>
+
+                <div class="summary-value" id="completedTasks">—</div>
+
+                <div class="summary-description">
+                  Successfully completed tasks
+                </div>
+              </article>
+
+              <!-- PENDING LEAVES -->
+
+              <article class="summary-card">
+                <div class="summary-card-top">
+                  <div class="summary-icon leave-icon">
+                    <i class="bi bi-calendar-event"></i>
+                  </div>
+
+                  <span class="summary-trend neutral"> LIVE </span>
+                </div>
+
+                <div class="summary-label">Pending Leave Requests</div>
+
+                <div class="summary-value" id="pendingLeaveRequests">—</div>
+
+                <div class="summary-description">
+                  Leave requests awaiting review
+                </div>
+              </article>
+            </section>
+
+            <!-- =================================================
+                     ADMIN QUICK ACTIONS
+                ================================================== -->
+
+            <section class="dashboard-grid">
+              <article class="dashboard-card quick-actions-card">
+                <div class="dashboard-card-header">
+                  <div>
+                    <span class="card-eyebrow"> QUICK ACCESS </span>
+
+                    <h3>Work Management</h3>
+                  </div>
+
+                  <i class="bi bi-grid"></i>
+                </div>
+
+                <div class="quick-actions-grid">
+                  <!-- ADD EMPLOYEE -->
+
+                  <a href="employees.html?add=1" class="quick-action">
+                    <div class="quick-action-icon blue">
+                      <i class="bi bi-person-plus"></i>
+                    </div>
+
+                    <div>
+                      <strong> Add Employee </strong>
+
+                      <span> Create a new employee </span>
+                    </div>
+
+                    <i class="bi bi-arrow-up-right"></i>
+                  </a>
+
+                  <!-- TASKS -->
+
+                  <a href="tasks.html" class="quick-action">
+                    <div class="quick-action-icon purple">
+                      <i class="bi bi-check2-square"></i>
+                    </div>
+
+                    <div>
+                      <strong> Manage Tasks </strong>
+
+                      <span> Create and assign tasks </span>
+                    </div>
+
+                    <i class="bi bi-arrow-up-right"></i>
+                  </a>
+
+                  <!-- LEAVES -->
+
+                  <a href="leaves.html" class="quick-action">
+                    <div class="quick-action-icon green">
+                      <i class="bi bi-calendar-plus"></i>
+                    </div>
+
+                    <div>
+                      <strong> Review Leaves </strong>
+
+                      <span> Review leave requests </span>
+                    </div>
+
+                    <i class="bi bi-arrow-up-right"></i>
+                  </a>
+
+                  <!-- REPORTS -->
+
+                  <a href="reports.html" class="quick-action">
+                    <div class="quick-action-icon orange">
+                      <i class="bi bi-bar-chart-line"></i>
+                    </div>
+
+                    <div>
+                      <strong> View Reports </strong>
+
+                      <span> Analyse workforce data </span>
+                    </div>
+
+                    <i class="bi bi-arrow-up-right"></i>
+                  </a>
+                </div>
+              </article>
+            </section>
+          </section>
+
+          <!-- =================================================
+                 EMPLOYEE DASHBOARD
+            ================================================== -->
+
+          <section id="employeeDashboardView" hidden>
+            <!-- WELCOME -->
+
+            <section class="dashboard-welcome employee-dashboard-welcome">
+              <div>
+                <span class="welcome-date" id="employeeWelcomeDate"></span>
+
+                <h2>
+                  Welcome,
+
+                  <span id="employeeWelcomeName"> Employee </span>
+
+                  👋
+                </h2>
+
+                <p>Here is your personal work overview.</p>
+              </div>
+            </section>
+
+            <!-- =================================================
+                     EMPLOYEE LIVE SUMMARY
+                ================================================== -->
+
+            <section class="summary-grid employee-summary-grid">
+              <!-- TOTAL TASKS -->
+
+              <article class="summary-card">
+                <div class="summary-card-top">
+                  <div class="summary-icon employees-icon">
+                    <i class="bi bi-check2-square"></i>
+                  </div>
+
+                  <span class="summary-trend positive"> LIVE </span>
+                </div>
+
+                <div class="summary-label">My Total Tasks</div>
+
+                <div class="summary-value" id="employeeTotalTasks">—</div>
+
+                <div class="summary-description">Assigned tasks</div>
+              </article>
+
+              <!-- PENDING TASKS -->
+
+              <article class="summary-card">
+                <div class="summary-card-top">
+                  <div class="summary-icon pending-icon">
+                    <i class="bi bi-hourglass-split"></i>
+                  </div>
+
+                  <span class="summary-trend neutral"> LIVE </span>
+                </div>
+
+                <div class="summary-label">Pending Tasks</div>
+
+                <div class="summary-value" id="employeePendingTasks">—</div>
+
+                <div class="summary-description">Tasks not yet started</div>
+              </article>
+
+              <!-- IN PROGRESS -->
+
+              <article class="summary-card">
+                <div class="summary-card-top">
+                  <div class="summary-icon active-icon">
+                    <i class="bi bi-arrow-repeat"></i>
+                  </div>
+
+                  <span class="summary-trend positive"> LIVE </span>
+                </div>
+
+                <div class="summary-label">In Progress</div>
+
+                <div class="summary-value" id="employeeInProgressTasks">—</div>
+
+                <div class="summary-description">
+                  Tasks currently in progress
+                </div>
+              </article>
+
+              <!-- COMPLETED -->
+
+              <article class="summary-card">
+                <div class="summary-card-top">
+                  <div class="summary-icon completed-icon">
+                    <i class="bi bi-check-circle"></i>
+                  </div>
+
+                  <span class="summary-trend positive"> LIVE </span>
+                </div>
+
+                <div class="summary-label">Completed Tasks</div>
+
+                <div class="summary-value" id="employeeCompletedTasks">—</div>
+
+                <div class="summary-description">Tasks completed by you</div>
+              </article>
+
+              <!-- PENDING LEAVES -->
+
+              <article class="summary-card">
+                <div class="summary-card-top">
+                  <div class="summary-icon leave-icon">
+                    <i class="bi bi-calendar-event"></i>
+                  </div>
+
+                  <span class="summary-trend neutral"> LIVE </span>
+                </div>
+
+                <div class="summary-label">Pending Leave Requests</div>
+
+                <div class="summary-value" id="employeePendingLeaves">—</div>
+
+                <div class="summary-description">
+                  Leave requests under review
+                </div>
+              </article>
+
+              <!-- APPROVED LEAVES -->
+
+              <article class="summary-card">
+                <div class="summary-card-top">
+                  <div class="summary-icon active-icon">
+                    <i class="bi bi-calendar2-check"></i>
+                  </div>
+
+                  <span class="summary-trend positive"> LIVE </span>
+                </div>
+
+                <div class="summary-label">Approved Leaves</div>
+
+                <div class="summary-value" id="employeeApprovedLeaves">—</div>
+
+                <div class="summary-description">Approved leave requests</div>
+              </article>
+            </section>
+
+            <!-- =================================================
+                     EMPLOYEE QUICK ACTIONS
+                ================================================== -->
+
+            <section class="dashboard-grid">
+              <article class="dashboard-card quick-actions-card">
+                <div class="dashboard-card-header">
+                  <div>
+                    <span class="card-eyebrow"> QUICK ACCESS </span>
+
+                    <h3>My Workspace</h3>
+                  </div>
+
+                  <i class="bi bi-person-workspace"></i>
+                </div>
+
+                <div class="quick-actions-grid">
+                  <!-- MY TASKS -->
+
+                  <a href="tasks.html" class="quick-action">
+                    <div class="quick-action-icon purple">
+                      <i class="bi bi-check2-square"></i>
+                    </div>
+
+                    <div>
+                      <strong> My Tasks </strong>
+
+                      <span> View and update assigned tasks </span>
+                    </div>
+
+                    <i class="bi bi-arrow-up-right"></i>
+                  </a>
+
+                  <!-- APPLY LEAVE -->
+
+                  <a href="leaves.html" class="quick-action">
+                    <div class="quick-action-icon green">
+                      <i class="bi bi-calendar-plus"></i>
+                    </div>
+
+                    <div>
+                      <strong> Apply Leave </strong>
+
+                      <span> Submit a new leave request </span>
+                    </div>
+
+                    <i class="bi bi-arrow-up-right"></i>
+                  </a>
+
+                  <!-- LEAVE HISTORY -->
+
+                  <a href="leaves.html" class="quick-action">
+                    <div class="quick-action-icon blue">
+                      <i class="bi bi-clock-history"></i>
+                    </div>
+
+                    <div>
+                      <strong> Leave History </strong>
+
+                      <span> Track your leave requests </span>
+                    </div>
+
+                    <i class="bi bi-arrow-up-right"></i>
+                  </a>
+                </div>
+              </article>
+            </section>
+          </section>
+
+          <!-- =================================================
+                 FOOTER
+            ================================================== -->
+
+          <footer class="dashboard-footer">
+            <span> Employee &amp; Task Management System </span>
+
+            <span> Secure • Responsive • Professional </span>
+          </footer>
+        </main>
+      </div>
+    </div>
+
+    <!-- =========================================================
+     SCRIPTS
+========================================================== -->
+
+    <script src="assets/js/config.js"></script>
+
+    <script src="assets/js/utils.js"></script>
+
+    <script src="assets/js/api.js"></script>
+
+    <script src="assets/js/auth.js"></script>
+
+    <script src="assets/js/common.js"></script>
+
+    <script src="assets/js/dashboard.js"></script>
+  </body>
+</html>

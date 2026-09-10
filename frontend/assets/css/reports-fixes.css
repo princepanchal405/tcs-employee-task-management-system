@@ -1,0 +1,83 @@
+
+/* =========================================================
+   FINAL REPORTS UI REFINEMENTS
+========================================================= */
+
+.reports-content {
+    padding-bottom: 36px;
+}
+
+.reports-actions {
+    gap: 10px;
+}
+
+.reports-kpi-grid {
+    align-items: stretch;
+}
+
+.report-kpi-card {
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+}
+
+.report-kpi-card strong {
+    min-height: 31px;
+}
+
+.report-panel,
+.report-summary-panel,
+.report-table-card {
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+}
+
+.report-chart-wrap {
+    position: relative;
+    min-height: 280px;
+}
+
+.report-chart-empty {
+    min-height: 240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-light);
+    font-size: 12px;
+}
+
+.report-summary-list > div {
+    min-height: 52px;
+}
+
+.report-table-wrapper .task-table {
+    min-width: 820px;
+}
+
+.report-export-dropdown {
+    overflow: hidden;
+}
+
+.report-export-dropdown button {
+    cursor: pointer;
+}
+
+@media (max-width: 900px) {
+    .reports-actions {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 640px) {
+    .reports-content {
+        padding-bottom: 22px;
+    }
+
+    .report-chart-wrap {
+        min-height: 230px;
+        height: 230px;
+    }
+
+    .report-table-wrapper .task-table {
+        min-width: 720px;
+    }
+}

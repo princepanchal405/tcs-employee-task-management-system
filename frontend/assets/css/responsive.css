@@ -1,0 +1,744 @@
+/* =========================================================
+   LARGE LAPTOP
+========================================================= */
+
+@media (max-height: 760px) and (min-width: 769px) {
+
+    .login-wrapper {
+        padding: 16px;
+    }
+
+    .login-container {
+        height: calc(100dvh - 32px);
+        max-height: 650px;
+    }
+
+    .brand-panel {
+        padding: 32px 40px 22px;
+    }
+
+    .project-brand {
+        margin-bottom: 24px;
+    }
+
+    .brand-heading h1 {
+        font-size: 34px;
+    }
+
+    .brand-heading p {
+        margin-top: 14px;
+        margin-bottom: 20px;
+    }
+
+    .feature-list {
+        gap: 9px;
+    }
+
+    .feature-icon {
+        width: 34px;
+        height: 34px;
+    }
+
+    .login-panel {
+        padding: 30px 48px;
+    }
+
+    .login-heading {
+        margin-bottom: 22px;
+    }
+
+    .login-heading h2 {
+        font-size: 25px;
+    }
+
+    .form-group {
+        margin-bottom: 14px;
+    }
+
+    .login-options {
+        margin-bottom: 17px;
+    }
+
+    .security-note {
+        margin-top: 14px;
+    }
+
+    .login-footer {
+        margin-top: 20px;
+        padding-top: 14px;
+    }
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 992px) {
+
+    .login-wrapper {
+        padding: 18px;
+    }
+
+    .login-container {
+        height: min(
+            650px,
+            calc(100dvh - 36px)
+        );
+
+        grid-template-columns: 44% 56%;
+    }
+
+    .brand-panel {
+        padding: 34px 30px 24px;
+    }
+
+    .brand-heading h1 {
+        font-size: 32px;
+    }
+
+    .brand-heading p {
+        font-size: 11px;
+    }
+
+    .feature-content span {
+        font-size: 8.5px;
+    }
+
+    .brand-footer {
+        gap: 10px;
+    }
+
+    .brand-footer span {
+        font-size: 8px;
+    }
+
+    .login-panel {
+        padding: 30px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .login-page {
+
+        overflow-y: auto;
+
+        background: #f3f7fd;
+    }
+
+
+    .login-wrapper {
+
+        min-height: 100dvh;
+
+        height: auto;
+
+        padding: 14px;
+    }
+
+
+    .login-container {
+
+        width: 100%;
+
+        height: auto;
+        min-height: calc(100dvh - 28px);
+
+        display: block;
+
+        border-radius: 18px;
+
+        overflow: hidden;
+    }
+
+
+    /* Hide desktop brand */
+
+    .brand-panel {
+        display: none;
+    }
+
+
+    /* Login panel */
+
+    .login-panel {
+
+        min-height: calc(100dvh - 28px);
+
+        padding: 30px 24px 24px;
+
+        align-items: flex-start;
+    }
+
+
+    .login-form-wrapper {
+
+        width: 100%;
+
+        max-width: 430px;
+
+        margin: auto;
+    }
+
+
+    /* Mobile project brand */
+
+    .mobile-brand {
+
+        display: flex;
+        align-items: center;
+
+        gap: 10px;
+
+        margin-bottom: 34px;
+    }
+
+
+    .mobile-logo {
+
+        width: 42px;
+        height: 42px;
+
+        flex-shrink: 0;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 11px;
+
+        background: var(--primary-light);
+
+        color: var(--primary);
+
+        font-size: 19px;
+    }
+
+
+    .mobile-brand strong {
+
+        display: block;
+
+        color: var(--navy);
+
+        font-size: 11px;
+
+        font-weight: 750;
+    }
+
+
+    .mobile-brand span {
+
+        display: block;
+
+        color: var(--text-secondary);
+
+        font-size: 10px;
+
+        margin-top: 2px;
+    }
+
+
+    .login-heading {
+
+        margin-bottom: 27px;
+    }
+
+
+    .login-heading h2 {
+
+        font-size: 25px;
+    }
+
+
+    .login-heading p {
+
+        font-size: 11px;
+    }
+
+
+    .custom-input {
+
+        height: 49px;
+    }
+
+
+    .password-toggle {
+
+        height: 49px;
+    }
+
+
+    .login-button {
+
+        height: 50px;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .login-wrapper {
+        padding: 0;
+    }
+
+
+    .login-container {
+
+        min-height: 100dvh;
+
+        border-radius: 0;
+
+        border: 0;
+
+        box-shadow: none;
+    }
+
+
+    .login-panel {
+
+        min-height: 100dvh;
+
+        padding:
+            25px
+            19px
+            20px;
+    }
+
+
+    .mobile-brand {
+
+        margin-bottom: 30px;
+    }
+
+
+    .login-heading h2 {
+
+        font-size: 23px;
+    }
+
+
+    .login-options {
+
+        font-size: 10px;
+    }
+
+
+    .forgot-link {
+
+        font-size: 10px;
+    }
+
+
+    .security-note {
+
+        font-size: 9px;
+    }
+
+
+    .login-footer {
+
+        margin-top: 24px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 350px) {
+
+    .login-panel {
+
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+
+    .login-heading h2 {
+
+        font-size: 21px;
+    }
+
+
+    .login-options {
+
+        gap: 8px;
+    }
+}
+
+/* =========================================================
+   DASHBOARD RESPONSIVE
+========================================================= */
+
+
+/* =========================================================
+   LARGE LAPTOP
+========================================================= */
+
+@media (max-width: 1280px) {
+
+    .app-sidebar {
+        width: 235px;
+    }
+
+    .app-main {
+        width: calc(100% - 235px);
+        margin-left: 235px;
+    }
+
+    .dashboard-content {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+    .summary-grid {
+        gap: 10px;
+    }
+
+    .summary-card {
+        padding: 14px;
+    }
+
+    .summary-value {
+        font-size: 23px;
+    }
+}
+
+
+/* =========================================================
+   TABLET / SMALL LAPTOP
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .summary-grid {
+
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+    }
+
+    .dashboard-grid {
+
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .app-sidebar {
+
+        width: 252px;
+
+        transform:
+            translateX(-100%);
+
+        box-shadow:
+            15px 0 40px rgba(15, 23, 42, 0.16);
+    }
+
+    .app-sidebar.sidebar-open {
+
+        transform:
+            translateX(0);
+    }
+
+    .sidebar-close {
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+    }
+
+    .sidebar-overlay.sidebar-visible {
+
+        display: block;
+    }
+
+    .app-main {
+
+        width: 100%;
+
+        margin-left: 0;
+    }
+
+    .mobile-menu-button {
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+    }
+
+    .app-topbar {
+
+        padding:
+            0 22px;
+    }
+
+    .dashboard-content {
+
+        padding:
+            25px 22px 20px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .app-topbar {
+
+        height: 70px;
+
+        padding:
+            0 16px;
+    }
+
+    .topbar-heading h1 {
+
+        font-size: 16px;
+    }
+
+    .topbar-heading span {
+
+        font-size: 7px;
+    }
+
+    .topbar-right {
+
+        gap: 4px;
+    }
+
+    .topbar-icon-button {
+
+        width: 34px;
+        height: 34px;
+    }
+
+    .topbar-divider,
+    .user-info,
+    .user-chevron {
+
+        display: none;
+    }
+
+    .user-avatar {
+
+        width: 34px;
+        height: 34px;
+    }
+
+    .dashboard-content {
+
+        padding:
+            21px 15px 18px;
+    }
+
+    .dashboard-welcome {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        margin-bottom: 20px;
+    }
+
+    .dashboard-welcome h2 {
+
+        font-size: 22px;
+    }
+
+    .dashboard-actions {
+
+        width: 100%;
+    }
+
+    .primary-action,
+    .secondary-action {
+
+        flex: 1;
+    }
+
+    .summary-grid {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 9px;
+    }
+
+    .summary-card {
+
+        padding: 14px;
+    }
+
+    .summary-card-top {
+
+        margin-bottom: 11px;
+    }
+
+    .summary-value {
+
+        font-size: 22px;
+    }
+
+    .summary-description {
+
+        font-size: 7px;
+    }
+
+    .dashboard-grid {
+
+        gap: 12px;
+    }
+
+    .dashboard-card {
+
+        padding: 16px;
+    }
+
+    .quick-actions-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-footer {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 5px;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .dashboard-actions {
+
+        flex-direction: column;
+    }
+
+    .primary-action,
+    .secondary-action {
+
+        width: 100%;
+    }
+
+    .summary-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+    .summary-card {
+
+        min-height: 125px;
+    }
+}
+/* =========================================================
+   DAY 1–6 POLISH RESPONSIVE
+========================================================= */
+
+@media (max-width: 768px) {
+    .registration-wrapper {
+        padding: 18px 12px;
+        align-items: flex-start;
+    }
+
+    .registration-card {
+        padding: 22px 17px;
+        border-radius: 16px;
+    }
+
+    .registration-grid {
+        grid-template-columns: 1fr;
+        gap: 4px 0;
+    }
+
+    .registration-header h1 {
+        font-size: 25px;
+    }
+
+    .dashboard-user-menu {
+        right: -4px;
+        width: 205px;
+    }
+
+    .dashboard-inline-notice {
+        left: 15px;
+        right: 15px;
+        bottom: 15px;
+        max-width: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-create-account {
+        font-size: 10px;
+    }
+
+    .registration-card {
+        min-height: calc(100dvh - 36px);
+    }
+
+    .registration-brand {
+        padding-bottom: 17px;
+    }
+
+    .registration-header {
+        padding-top: 20px;
+    }
+}
+
+/* =========================================================
+   TASK MANAGEMENT RESPONSIVE
+========================================================= */
+
+@media (max-width: 1100px) {
+    .task-filter-grid { grid-template-columns:repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 900px) {
+    .task-welcome { align-items:flex-start; flex-direction:column; }
+    .task-filter-grid { grid-template-columns:repeat(2, minmax(0, 1fr)); }
+    .task-search-group { grid-column:1 / -1; }
+    .task-filter-actions { justify-content:flex-start; }
+}
+
+@media (max-width: 650px) {
+    .task-welcome h2 { font-size:22px; }
+    .task-filter-grid { grid-template-columns:1fr; }
+    .task-search-group { grid-column:auto; }
+    .task-filter-actions .secondary-action { width:100%; justify-content:center; }
+    .task-table-card { padding:14px; }
+    .task-pagination { align-items:flex-start; flex-direction:column; }
+    .pagination-controls { width:100%; justify-content:flex-end; }
+    .task-form-grid, .task-details-grid { grid-template-columns:1fr; }
+    .task-form-field.full, .task-detail-box.full { grid-column:auto; }
+}

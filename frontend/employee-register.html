@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Create an employee account for the Employee & Task Management System">
+    <title>Create Employee Account | Employee & Task Management System</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body class="registration-page">
+
+<main class="registration-wrapper">
+    <section class="registration-card">
+
+        <div class="registration-brand">
+            <div class="registration-logo">
+                <i class="bi bi-buildings"></i>
+            </div>
+            <div>
+                <strong>Employee &amp; Task Management</strong>
+                <span>Management System</span>
+            </div>
+        </div>
+
+        <div class="registration-header">
+            <span class="registration-eyebrow">EMPLOYEE REGISTRATION</span>
+            <h1>Create your employee account</h1>
+            <p>Complete your employee profile and create your secure sign-in account.</p>
+        </div>
+
+        <div id="registrationAlert" class="registration-alert d-none" role="alert"></div>
+
+        <form id="registrationForm" novalidate>
+            <div class="registration-section-title">Employee information</div>
+
+            <div class="registration-grid">
+                <div class="registration-field">
+                    <label for="registerEmployeeId">Employee ID <span>*</span></label>
+                    <input id="registerEmployeeId" type="text" maxlength="20" placeholder="EMP-001" autocomplete="off" required>
+                    <div class="registration-error" data-error-for="registerEmployeeId"></div>
+                </div>
+
+                <div class="registration-field">
+                    <label for="registerName">Full name <span>*</span></label>
+                    <input id="registerName" type="text" maxlength="150" placeholder="Prince Patel" autocomplete="name" required>
+                    <div class="registration-error" data-error-for="registerName"></div>
+                </div>
+
+                <div class="registration-field">
+                    <label for="registerEmail">Email address <span>*</span></label>
+                    <input id="registerEmail" type="email" maxlength="254" placeholder="name@example.com" autocomplete="email" required>
+                    <div class="registration-error" data-error-for="registerEmail"></div>
+                </div>
+
+                <div class="registration-field">
+                    <label for="registerMobile">Mobile number <span>*</span></label>
+                    <input id="registerMobile" type="tel" maxlength="15" placeholder="9876543210" autocomplete="tel" required>
+                    <div class="registration-error" data-error-for="registerMobile"></div>
+                </div>
+
+                <div class="registration-field">
+                    <label for="registerDepartment">Department <span>*</span></label>
+                    <select id="registerDepartment" required>
+                        <option value="">Select department</option>
+                        <option value="IT">IT</option>
+                        <option value="HR">HR</option>
+                        <option value="Finance">Finance</option>
+                        <option value="Operations">Operations</option>
+                        <option value="Sales">Sales</option>
+                    </select>
+                    <div class="registration-error" data-error-for="registerDepartment"></div>
+                </div>
+
+                <div class="registration-field">
+                    <label for="registerDesignation">Designation <span>*</span></label>
+                    <input id="registerDesignation" type="text" maxlength="100" placeholder="Software Engineer" required>
+                    <div class="registration-error" data-error-for="registerDesignation"></div>
+                </div>
+
+                <div class="registration-field">
+                    <label for="registerLocation">Location <span>*</span></label>
+                    <input id="registerLocation" type="text" maxlength="100" placeholder="Ahmedabad" required>
+                    <div class="registration-error" data-error-for="registerLocation"></div>
+                </div>
+
+                <div class="registration-field">
+                    <label for="registerJoiningDate">Joining date <span>*</span></label>
+                    <input id="registerJoiningDate" type="date" required>
+                    <div class="registration-error" data-error-for="registerJoiningDate"></div>
+                </div>
+            </div>
+
+            <div class="registration-section-title">Secure login</div>
+
+            <div class="registration-grid">
+                <div class="registration-field">
+                    <label for="registerPassword">Password <span>*</span></label>
+                    <div class="registration-password">
+                        <input id="registerPassword" type="password" minlength="8" placeholder="Minimum 8 characters" autocomplete="new-password" required>
+                        <button type="button" data-password-target="registerPassword" aria-label="Show password">
+                            <i class="bi bi-eye"></i>
+                        </button>
+                    </div>
+                    <div class="registration-error" data-error-for="registerPassword"></div>
+                </div>
+
+                <div class="registration-field">
+                    <label for="registerConfirmPassword">Confirm password <span>*</span></label>
+                    <div class="registration-password">
+                        <input id="registerConfirmPassword" type="password" minlength="8" placeholder="Re-enter password" autocomplete="new-password" required>
+                        <button type="button" data-password-target="registerConfirmPassword" aria-label="Show password">
+                            <i class="bi bi-eye"></i>
+                        </button>
+                    </div>
+                    <div class="registration-error" data-error-for="registerConfirmPassword"></div>
+                </div>
+            </div>
+
+            <p class="registration-security">
+                <i class="bi bi-shield-check"></i>
+                Your account will be created with the Employee role.
+            </p>
+
+            <button type="submit" id="registerSubmitButton" class="registration-submit">
+                <span id="registerSubmitText">Create account</span>
+                <span id="registerSpinner" class="spinner-border spinner-border-sm d-none" aria-hidden="true"></span>
+                <i id="registerArrow" class="bi bi-arrow-right"></i>
+            </button>
+        </form>
+
+        <div class="registration-footer">
+            <span>Already have an account?</span>
+            <a href="index.html">Sign in</a>
+        </div>
+    </section>
+</main>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/api.js"></script>
+<script src="assets/js/register.js"></script>
+</body>
+</html>
