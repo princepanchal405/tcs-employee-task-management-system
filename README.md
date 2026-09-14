@@ -1,14 +1,14 @@
 # TCS Employee & Task Management System
 
-A professional, responsive, role-based web application developed as a 15-day technical project for managing employees, tasks, leave requests, and basic organizational activities.
+A professional, responsive, role-based full-stack web application developed as a 15-day technical project for managing employees, tasks, leave requests, reporting, and basic organizational workflows.
 
-The system provides separate Admin and Employee experiences with secure authentication, role-based access, responsive dashboards, workflow management, reporting, validation, and REST API integration.
+The system provides separate Admin and Employee experiences with JWT authentication, role-based access control, responsive dashboards, REST API integration, PostgreSQL persistence, validation, reporting, CSV export, and responsive UI support.
 
 ---
 
 ## 1. Project Overview
 
-The **TCS Employee & Task Management System** is designed to provide a centralized workspace for:
+The **TCS Employee & Task Management System** provides a centralized workspace for:
 
 - Employee information management
 - Task creation and assignment
@@ -35,23 +35,26 @@ Each role receives access only to the functionality relevant to that role.
 - Professional login interface
 - JWT-based authentication
 - Role-based Admin / Employee access
+- Protected API endpoints
 - Responsive dashboard
 - Navigation sidebar
 - Dashboard summary cards
 - Quick access to major modules
-- Automatic JWT access-token refresh
+- JWT access-token refresh
 
-### Dashboard Statistics
-
-#### Admin Dashboard
+### Admin Dashboard
 
 - Total Employees
 - Active Employees
 - Pending Tasks
 - Completed Tasks
 - Pending Leave Requests
+- Department-wise employee statistics
+- Task status statistics
+- Leave statistics
+- Pending vs Completed task analysis
 
-#### Employee Dashboard
+### Employee Dashboard
 
 - My Total Tasks
 - Pending Tasks
@@ -59,6 +62,7 @@ Each role receives access only to the functionality relevant to that role.
 - Completed Tasks
 - Pending Leave Requests
 - Approved Leave Requests
+- Personal task and leave workflows
 
 ---
 
@@ -69,7 +73,7 @@ The Employee Management module provides:
 - Add Employee
 - Edit Employee
 - Delete Employee
-- View Employee Profile
+- View Employee Profile / Details
 - Employee ID management
 - Employee Name
 - Email
@@ -80,10 +84,15 @@ The Employee Management module provides:
 - Joining Date
 - Employment Status
 - Employee search
-- Department-wise filtering
+- Department filtering
 - Status filtering
-- Employee details view
 - Pagination
+- Delete confirmation
+- Loading states
+- Empty states
+- Validation and error handling
+
+Employee profile/details are presented through the application UI without requiring separate standalone detail pages.
 
 ---
 
@@ -106,11 +115,12 @@ The Task Management module provides:
   - Completed
 - Employee-wise task listing
 - Employee task status updates
-- Search functionality
+- Search
 - Filtering
 - Sorting
-- Task details view
+- Task details
 - Pagination
+- Validation and error handling
 
 ---
 
@@ -133,8 +143,11 @@ The Leave Management module provides:
 - Admin rejection
 - Approval / rejection remarks
 - Employee-wise leave records
-- Search and filtering
+- Search
+- Filtering
 - Pagination
+- Date-range validation
+- Error and success handling
 
 ---
 
@@ -147,11 +160,21 @@ The Reports & Analytics module provides:
 - Employee-wise Task Summary
 - Leave Statistics
 - Pending vs Completed Task analysis
-- Dashboard KPI statistics
+- KPI summary
 - Charts and graphs
-- Search and filtering
+- Employee search
+- Employee ID search
+- Department search
+- Task status filtering
+- Reset filters
 - Pagination
 - CSV export
+
+Available CSV exports:
+
+- Employee report
+- Task report
+- Leave report
 
 ---
 
@@ -166,16 +189,18 @@ Implemented validations include:
 - Mobile number validation
 - Employee ID validation
 - Duplicate Employee ID prevention
+- Duplicate email handling
 - Valid date validation
-- Date range validation
+- Date-range validation
 - Due-date validation
 - Leave date validation
-- Appropriate success messages
-- Appropriate error messages
-- Empty states
-- Loading states
-- Error states
 - Invalid-data handling
+- Success messages
+- Error messages
+- Loading states
+- Empty states
+- API error handling
+- Unauthorized access handling
 
 ---
 
@@ -188,6 +213,7 @@ The application follows a professional corporate-style interface with:
 - Consistent spacing and alignment
 - Responsive layouts
 - Desktop compatibility
+- Tablet compatibility
 - Mobile compatibility
 - Clear navigation
 - Consistent buttons and form controls
@@ -196,7 +222,8 @@ The application follows a professional corporate-style interface with:
 - Empty states
 - Error states
 - User-friendly alerts and notifications
-- Role-based user menus
+- Role-based navigation
+- Role-based access-aware UI
 
 The interface uses a custom corporate-style design and does not rely on unauthorized official company branding or assets.
 
@@ -212,6 +239,7 @@ The interface uses a custom corporate-style design and does not rely on unauthor
 - Bootstrap 5
 - Bootstrap Icons
 - Chart.js
+- Fetch API
 
 ### Backend
 
@@ -232,37 +260,23 @@ The interface uses a custom corporate-style design and does not rely on unauthor
 
 ---
 
-## 10. Project Structure
+## 10. Architecture
 
 ```text
-TCS_Employee_Task_Management_System/
-│
-├── backend/
-│   ├── accounts/
-│   ├── config/
-│   ├── employees/
-│   ├── leaves/
-│   ├── reports/
-│   ├── tasks/
-│   └── manage.py
-│
-├── frontend/
-│   ├── assets/
-│   │   ├── css/
-│   │   └── js/
-│   ├── dashboard.html
-│   ├── employee-details.html
-│   ├── employee-register.html
-│   ├── employees.html
-│   ├── index.html
-│   ├── leaves.html
-│   ├── reports.html
-│   ├── task-details.html
-│   └── tasks.html
-│
-├── .gitignore
-├── .env
-├── README.md
-├── requirements.txt
-├── run_backend.bat
-└── run_frontend.bat
+User
+  |
+  v
+Frontend
+HTML + CSS + JavaScript + Bootstrap
+  |
+  | Fetch API
+  v
+Django REST Framework
+  |
+  | JWT Authentication
+  | Permissions
+  v
+Django ORM
+  |
+  v
+PostgreSQL
