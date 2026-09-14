@@ -81,3 +81,151 @@
         min-width: 720px;
     }
 }
+
+
+/* =========================================================
+   REPORT FILTERS - FINAL POLISH
+========================================================= */
+
+.report-table-card {
+    overflow: hidden;
+}
+
+.report-filters-card {
+    margin: 0 22px 22px;
+    padding: 18px 0 0;
+    border-top: 1px solid #e8edf5;
+}
+
+.report-filter-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 260px auto;
+    gap: 16px;
+    align-items: end;
+}
+
+.report-filter-search,
+.task-filter-group,
+.report-filter-actions {
+    min-width: 0;
+}
+
+.report-filter-search label,
+.task-filter-group label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: #667085;
+}
+
+.report-filter-search .task-input-icon-wrap {
+    position: relative;
+}
+
+.report-filter-search .task-input-icon-wrap > i {
+    position: absolute;
+    top: 50%;
+    left: 14px;
+    z-index: 2;
+    transform: translateY(-50%);
+    color: #98a2b3;
+    pointer-events: none;
+}
+
+.report-filter-search .form-control {
+    min-height: 46px;
+    padding-left: 42px;
+    border: 1px solid #d9e0ea;
+    border-radius: 10px;
+    background: #ffffff;
+    font-size: 14px;
+    color: #101828;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.report-filter-search .form-control::placeholder {
+    color: #98a2b3;
+}
+
+.report-filter-search .form-control:focus {
+    border-color: #8ab4f8;
+    box-shadow: 0 0 0 3px rgba(49, 110, 245, 0.10);
+}
+
+.task-filter-group .form-select {
+    min-height: 46px;
+    border: 1px solid #d9e0ea;
+    border-radius: 10px;
+    background-color: #ffffff;
+    font-size: 14px;
+    color: #101828;
+    cursor: pointer;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.task-filter-group .form-select:focus {
+    border-color: #8ab4f8;
+    box-shadow: 0 0 0 3px rgba(49, 110, 245, 0.10);
+}
+
+.report-filter-actions {
+    display: flex;
+    align-items: flex-end;
+}
+
+.report-filter-actions .secondary-action {
+    min-height: 46px;
+    min-width: 104px;
+    justify-content: center;
+    white-space: nowrap;
+    border-radius: 10px;
+}
+
+/* Keep table visually connected with filters */
+.report-table-card .report-table-wrapper {
+    margin-top: 2px;
+}
+
+/* =========================================================
+   REPORT FILTERS - RESPONSIVE
+========================================================= */
+
+@media (max-width: 900px) {
+    .report-filter-row {
+        grid-template-columns: minmax(0, 1fr) 220px;
+    }
+
+    .report-filter-actions {
+        grid-column: 1 / -1;
+    }
+
+    .report-filter-actions .secondary-action {
+        width: auto;
+    }
+}
+
+@media (max-width: 640px) {
+    .report-filters-card {
+        margin: 0 16px 18px;
+        padding-top: 16px;
+    }
+
+    .report-filter-row {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .report-filter-actions {
+        grid-column: auto;
+    }
+
+    .report-filter-actions .secondary-action {
+        width: 100%;
+    }
+}
